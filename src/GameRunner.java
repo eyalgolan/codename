@@ -1,6 +1,8 @@
 public class GameRunner {
 
     public static void main(String[] args) {
-        System.out.println("test");
+        Board game_board = new Board();
+        Chat chatroom = new Chat();
+        Turn turn = new Turn();
     }
 }
