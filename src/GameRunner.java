@@ -4,5 +4,6 @@ public class GameRunner {
         Board game_board = new Board();
         Chat chatroom = new Chat();
         Turn turn = new Turn();
+        System.out.println("check");
     }
 }
