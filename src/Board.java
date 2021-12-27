@@ -2,7 +2,7 @@ public class Board {
     //Singelton Class
     private static Board singel_instance_board = null;
     private CardPile; //TODO
-    private MapCard; //TODO
+    private MapCard; //
     private Map; //TODO
     public String s;
 
