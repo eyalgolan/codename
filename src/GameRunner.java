@@ -1,22 +1,34 @@
-public class GameRunner {
+import java.util.Arrays;
+import java.util.List;
 
-    public static void main(String[] args) {
-        // ofir's main
+public class GameRunner {
+    private Board game_board;
+    private Turn turn;
+    private boolean gameNotOver;
+    private ChatMediator mediator;
+    private List<Player> playerList;
+    public GameRunner() {
         Board game_board = Board.getInstance();
         Turn turn = new Turn();
-        System.out.println("check");
-        
-        // eyal's main
+        boolean gameNotOver = true;
         ChatMediator mediator = new ChatMediatorImpl();
-        Player player1 = new PlayerImpl(mediator, "Ofir");
-        Player player2 = new PlayerImpl(mediator, "Eyal");
-        Player player3 = new PlayerImpl(mediator, "Guy");
-        Player player4 = new PlayerImpl(mediator, "Roi");
-        mediator.addPlayer(player1);
-        mediator.addPlayer(player2);
-        mediator.addPlayer(player3);
-        mediator.addPlayer(player4);
+        Player player1 = new PlayerImpl(mediator, "Ofir", new SpymasterRole());
+        Player player2 = new PlayerImpl(mediator, "Eyal", new SpymasterRole());
+        Player player3 = new PlayerImpl(mediator, "Guy", new RegularPlayerRole());
+        Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole());
+
+        playerList = Arrays.asList(player1, player2, player3, player4);
+
+        for(Player p : playerList) {
+            mediator.addPlayer(p);
+        }
         player1.send("Hey everyone, lets start?");
+    }
+    public void gameLoop() {
+//        while (this.gameNotOver) {
+//
+//        }
+//        }
     }
     // check the turn and give permission to player - update Turn
     // get input from chat -

@@ -1,6 +1,6 @@
 public class PlayerImpl extends Player {
-    public PlayerImpl(ChatMediator med, String name) {
-        super(med, name);
+    public PlayerImpl(ChatMediator med, String name, PlayerRole role) {
+        super(med, name, role);
     }
     @Override
     public void send(String msg){
