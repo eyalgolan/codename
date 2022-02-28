@@ -3,4 +3,6 @@ public class NameCard {
     public NameCard(String word) {
         this.word = word;
     }
+
+    public String getWord (){ return this.word; }
 }

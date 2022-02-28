@@ -3,16 +3,20 @@ import java.util.ArrayList;
 public class Board {
     //Singelton Class
     private static Board singel_instance_board = null;
-    //private CardPile cardPile; //TODO
+    private NameCardPile nameCardPile;
     private MapCard mapCard; //locations and colors
     private NameMap nameMap; //locations and names
+    private ResultCardPile resultCardPile;
     public String s;
-    public GameMap gameMap; //location colors and name.
+    public GameMap gameMap; //location colors and name
+
     //Constructor
     private Board()
     {
         this.s = "Some Description of the board - might need to delete..";
-        this.nameMap = new NameMap("WordsTest.txt"); //TODO: name of the file - how to chose what constructor we need to use (singelton)??
+        this.nameCardPile = new NameCardPile("WordsTest.txt"); //TODO: name of the file - how to chose what constructor we need to use (singelton)??
+        this.resultCardPile = new ResultCardPile();
+        this.nameMap = new NameMap(nameCardPile);
         this.mapCard = new MapCard();
         this.gameMap = new GameMap(this.nameMap,this.mapCard);
         //this.cardPile = new CardPile();
