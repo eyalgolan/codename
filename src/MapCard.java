@@ -71,7 +71,46 @@ public class MapCard {
         return color;
     }
 
+    //from interface MAP TODO: crate common interface
     public MapCardSpot[][] GetMapCardSpot(){
         return this.grid;
     }
+
+    public void printMap(){
+//        String[][] array
+        System.out.print("    |");
+        for (int i = 0; i < grid[0].length; i++){
+            System.out.print("    ");
+            System.out.print(i+1);
+            System.out.print("    |");
+        }
+        System.out.println();
+        for (int i = 0; i < grid.length; i++){
+            System.out.print("----+");
+            for (int j = 0; j < grid[0].length; j++){
+                System.out.print("---------+");
+            }
+            System.out.println();
+            System.out.print("  " + (i + 1) + " |");
+            for (int j = 0; j < grid[0].length; j++){
+                if (grid[i][j].getContent().length() < 10){
+                    int spaces = (9 - grid[i][j].getContent().length()) / 2;
+                    for (int k = 0; k < spaces; k++){
+                        System.out.print(" ");
+                    }
+                    System.out.print(grid[i][j].getContent());
+                    for (int k = 0; k < (9 - grid[i][j].getContent().length()) - spaces; k++){
+                        System.out.print(" ");
+                    }
+                }
+                else{
+                    System.out.print(grid[i][j].getContent().substring(0, 9));
+                }
+                System.out.print("|");
+            }
+            System.out.println();
+        }
+    }
+
 }
+

@@ -8,7 +8,7 @@ public class NameMapSpot extends Spot{
     }
 
 
-    public String getName(){
+    public String getContent(){
         return this.name;
     }
 }

@@ -1,4 +1,4 @@
-public class NameCard {
+public class NameCard implements AbstractCard {
     protected String word;
     public NameCard(String word) {
         this.word = word;

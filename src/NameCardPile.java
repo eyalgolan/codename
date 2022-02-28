@@ -12,7 +12,7 @@ public class NameCardPile implements CardPile {
 
     public NameCardPile(String configMapFileName) {
 
-        //this.nameCards = new NameCard[25];
+        this.nameCards = new Stack<NameCard>();
 
         ArrayList<String> names = LoadNameFile(configMapFileName);
         for (int i = 0; i < 25; i++){
@@ -50,6 +50,6 @@ public class NameCardPile implements CardPile {
 
     public AbstractCard draw() {
         NameCard card = nameCards.pop();
-        return (AbstractCard) card;
+        return card;
     }
 }

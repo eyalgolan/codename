@@ -1,4 +1,3 @@
-import java.util.Arrays;
 import java.util.List;
 
 public class GameRunner {
@@ -9,8 +8,17 @@ public class GameRunner {
     private List<Player> playerList;
     public GameRunner() {
         Board game_board = Board.getInstance();
-        Turn turn = new Turn();
-        boolean gameNotOver = true;
+        //Turn turn = new Turn();
+        System.out.println("\n~*~*~*~*~*~*~*~*~*~GAME BOARD~*~*~*~*~*~*~*~*~*~\n");
+        game_board.getNameMap().printMap();
+        System.out.println("\n\n\n");
+        System.out.println("\n~*~*~*~*~*~*~*~*~*~SPY MASTER CARD~*~*~*~*~*~*~*~*~*~\n");
+        game_board.getMapCard().printMap();
+
+        System.out.println("\n\n\n");
+        System.out.println("\n~*~*~*~*~*~*~*~*~*~eyal's main~*~*~*~*~*~*~*~*~*~\n");
+
+        // eyal's main
         ChatMediator mediator = new ChatMediatorImpl();
         Player player1 = new PlayerImpl(mediator, "Ofir", new SpymasterRole());
         Player player2 = new PlayerImpl(mediator, "Eyal", new SpymasterRole());
