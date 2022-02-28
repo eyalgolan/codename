@@ -11,6 +11,23 @@ public class MapCardSpot extends Spot{
             //TODO : change random to real random
             return ColorChoices.get(rand.nextInt(ColorChoices.size()));
         }
+        public String toString(){
+            switch (this){
+                case GRAY -> {
+                    return ("GRAY");
+                }
+                case RED -> {
+                    return ("RED");
+                }
+                case BLUE -> {
+                    return ("BLUE");
+                }
+                case BLACK -> {
+                    return ("BLACK");
+                }
+                default -> {return null;}
+            }
+        }
     };
     private final Colors color;
     // constructor
@@ -19,8 +36,8 @@ public class MapCardSpot extends Spot{
         this.color = color;
     }
 
-    public Colors getColor(){
-        return this.color;
+    public String getContent(){
+        return this.color.toString();
     }
 
 }
