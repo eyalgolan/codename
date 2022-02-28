@@ -1,15 +1,21 @@
+import java.util.ArrayList;
+
 public class Board {
     //Singelton Class
     private static Board singel_instance_board = null;
-    private CardPile; //TODO
-    private MapCard; //
-    private Map; //TODO
+    //private CardPile cardPile; //TODO
+    private MapCard mapCard; //locations and colors
+    private NameMap nameMap; //locations and names
     public String s;
-
+    public GameMap gameMap; //location colors and name.
     //Constructor
     private Board()
     {
-        s = "Some Description of the board - might need to delete..";
+        this.s = "Some Description of the board - might need to delete..";
+        this.nameMap = new NameMap("WordsTest.txt"); //TODO: name of the file - how to chose what constructor we need to use (singelton)??
+        this.mapCard = new MapCard();
+        this.gameMap = new GameMap(this.nameMap,this.mapCard);
+        //this.cardPile = new CardPile();
     }
 
     //Static method to create instance of singelton Board class
