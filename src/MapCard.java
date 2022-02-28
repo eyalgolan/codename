@@ -62,7 +62,12 @@ public class MapCard {
             ColorChoices.add(MapCardSpot.Colors.GRAY);
         }
         color = MapCardSpot.Colors.randomColorForSpot(ColorChoices);
-        //TODO: CHANGE THE COUNTERS HERE!
+        switch (color){
+            case BLACK -> numOfBlack++;
+            case BLUE -> numOfBlue++;
+            case RED -> numOfRed++;
+            case GRAY -> numOfGray++;
+        }
         return color;
     }
 
