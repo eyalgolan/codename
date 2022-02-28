@@ -12,7 +12,7 @@ public class MapCardSpot extends Spot{
             return ColorChoices.get(rand.nextInt(ColorChoices.size()));
         }
     };
-    private Colors color;
+    private final Colors color;
     // constructor
     public MapCardSpot(int x, int y,Colors color) {
         super(x, y);

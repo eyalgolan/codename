@@ -3,7 +3,6 @@ public class GameRunner {
     public static void main(String[] args) {
         // ofir's main
         Board game_board = Board.getInstance();
-        Chat chatroom = new Chat();
         Turn turn = new Turn();
         System.out.println("check");
         
