@@ -40,4 +40,7 @@ public class MapCardSpot extends Spot{
         return this.color.toString();
     }
 
+    public Colors getColor() {
+        return color;
+    }
 }

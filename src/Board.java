@@ -40,4 +40,8 @@ public class Board {
     public MapCard getMapCard(){
         return this.mapCard;
     }
+
+    public ResultCardPile getResultCardPile() {
+        return this.resultCardPile;
+    }
 }

@@ -1,14 +1,22 @@
 public class BystanderCard implements AbstractResultCard{
+    protected String color;
     protected boolean isUsed;
     public BystanderCard(){
         this.isUsed=false;
-    }
-    @Override
-    public String getClassName() {
-        return this.getClass().getSimpleName();
+        this.color = "GREY";
     }
     @Override
     public void useCard() {
         this.isUsed=true;
+    }
+
+    @Override
+    public String getColor() {
+        return color;
+    }
+
+    @Override
+    public boolean isUsed() {
+        return isUsed;
     }
 }

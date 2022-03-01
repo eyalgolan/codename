@@ -5,13 +5,19 @@ public class ColorCard implements AbstractResultCard{
         this.color=color;
         this.isUsed=false;
     }
+
     @Override
-    public String getClassName() {
-        return this.getClass().getSimpleName();
+    public String getColor() {
+        return color;
     }
 
     @Override
     public void useCard() {
         this.isUsed=true;
+    }
+
+    @Override
+    public boolean isUsed() {
+        return isUsed;
     }
 }

@@ -1,5 +1,4 @@
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
@@ -72,7 +71,7 @@ public class MapCard {
     }
 
     //from interface MAP TODO: crate common interface
-    public MapCardSpot[][] GetMapCardSpot(){
+    public MapCardSpot[][] getMapCardSpot(){
         return this.grid;
     }
 
