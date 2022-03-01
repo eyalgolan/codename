@@ -39,6 +39,10 @@ public class GameRunner {
 //        }
 //        }
     }
+
+    public static void main(String[] args) {
+        GameRunner game = new GameRunner();
+    }
     // check the turn and give permission to player - update Turn
     // get input from chat -
     //  if spymaster - 1) get input of clue

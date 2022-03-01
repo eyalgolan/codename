@@ -27,7 +27,7 @@ public class NameCardPile implements CardPile {
     public ArrayList<String> LoadNameFile (String configMapFileName){
         ArrayList<String> names = new ArrayList<String>();
         try{
-            for (String name : Files.readAllLines(Paths.get("C:\\Users\\obezra\\IdeaProjects\\codename\\src\\WordsTest.txt"))){ //TODO: configMapFileName
+            for (String name : Files.readAllLines(Paths.get("C:\\Users\\eyalg\\IdeaProjects\\codename\\src\\WordsTest.txt"))){ //TODO: configMapFileName
 //            for (String name : Files.readAllLines(pathToFile)){ //TODO: configMapFileName
                 names.add(name);
             }
