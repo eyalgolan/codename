@@ -18,37 +18,44 @@ public class GameRunner {
 
     public GameRunner() {
         //states
-        this.playState = new PlayState();
-        this.notPlayState = new NotPlayState();
+        this.playState = new PlayingState();
+        this.notPlayState = new LockedState();
 
         this.gameNotOver = true;
         this.game_board = Board.getInstance();
         this.turn = new Turn();
 
-        System.out.println("\n~*~*~*~*~*~*~*~*~*~eyal's main~*~*~*~*~*~*~*~*~*~\n");
 
         // eyal's main
+        setupPlayers();
+        this.playerList.get(0).send("Hey everyone, lets start?");
+    }
+
+    public void setupPlayers() {
         this.mediator = new ChatMediatorImpl();
         Player player1 = new PlayerImpl(mediator, "Ofir", new SpymasterRole(), "RED");
         Player player2 = new PlayerImpl(mediator, "Eyal", new SpymasterRole(), "BLUE");
         Player player3 = new PlayerImpl(mediator, "Guy", new RegularPlayerRole(), "RED");
         Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole(), "BLUE");
-
-        playerList = Arrays.asList(player1, player2, player3, player4);
-
+        this.playerList = Arrays.asList(player1, player2, player3, player4);
         for(Player p : playerList) {
             gameNotOver = notPlayState.doAction(p,game_board,turn);
             mediator.addPlayer(p);
         }
-        player1.send("Hey everyone, lets start?");
     }
-
+    public void printWhoIsPlaying(Player player) {
+        System.out.println("~*~*~*~*~*~*~*~*~*~");
+        System.out.println("Turn : " + player.name +
+                "\nTeam: " + currentTeamPlay +
+                "\nRole: " + currentRolePlay);
+        System.out.println("~*~*~*~*~*~*~*~*~*~");
+    }
     public void gameLoop() {
         while (this.gameNotOver) {
             for(Player player : playerList) {
                 currentTeamPlay = player.getGroupColor();
                 currentRolePlay = player.getRole();
-                System.out.println("Turn : " + player.name + ",Team: " + currentTeamPlay+",Role: "+currentRolePlay);
+                printWhoIsPlaying(player);
                 gameNotOver = playState.doAction(player,game_board,turn);
             }
             this.turn.printTurnStatistics();

@@ -59,4 +59,8 @@ public class RegularPlayerRole implements PlayerRole{
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Regular player";
+    }
 }

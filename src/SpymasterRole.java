@@ -22,4 +22,9 @@ public class SpymasterRole implements PlayerRole {
         System.out.println("xxxxxxxxxxxxxxxxxxxxxxx- COMPLETE SPY MASTER FUNCTION! - in SpyMasterRole xxxxxxxxxxxxxxxxxxxxxxx");
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Spymaster";
+    }
 }
