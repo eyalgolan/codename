@@ -17,5 +17,4 @@ public class PlayingState implements State {
     public boolean handlePlayerActions(Player player, Board game_board, Turn turn) {
         return player.getRole().doRole(player,game_board,turn);
     }
-
 }

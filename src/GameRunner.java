@@ -9,8 +9,8 @@ public class GameRunner {
     private List<Player> playerList;
 
     //states
-    private State playState;
-    private State notPlayState;
+    private State playingState;
+    private State lockedState;
 
     //current
     private String currentTeamPlay;
@@ -18,8 +18,8 @@ public class GameRunner {
 
     public GameRunner() {
         //states
-        this.playState = new PlayingState();
-        this.notPlayState = new LockedState();
+        this.playingState = new PlayingState();
+        this.lockedState = new LockedState();
 
         this.gameNotOver = true;
         this.game_board = Board.getInstance();
@@ -39,7 +39,7 @@ public class GameRunner {
         Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole(), "BLUE");
         this.playerList = Arrays.asList(player1, player2, player3, player4);
         for(Player p : playerList) {
-            gameNotOver = notPlayState.doAction(p,game_board,turn);
+            gameNotOver = lockedState.doAction(p,game_board,turn);
             mediator.addPlayer(p);
         }
     }
@@ -56,7 +56,8 @@ public class GameRunner {
                 currentTeamPlay = player.getGroupColor();
                 currentRolePlay = player.getRole();
                 printWhoIsPlaying(player);
-                gameNotOver = playState.doAction(player,game_board,turn);
+                gameNotOver = playingState.doAction(player, game_board, turn);
+                lockedState.doAction(player, game_board, turn);
             }
             this.turn.printTurnStatistics();
             this.turn.incrementTurnNumber();
