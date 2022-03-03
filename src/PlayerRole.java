@@ -1,3 +1,3 @@
 public interface PlayerRole {
-    public String doRole();
+    public boolean doRole(Player player, Board game_board, Turn turn);
 }

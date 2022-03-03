@@ -8,17 +8,23 @@ public class GameRunner {
     private ChatMediator mediator;
     private List<Player> playerList;
 
+    //states
+    private State playState;
+    private State notPlayState;
+
+    //current
+    private String currentTeamPlay;
+    private PlayerRole currentRolePlay;
+
     public GameRunner() {
+        //states
+        this.playState = new PlayState();
+        this.notPlayState = new NotPlayState();
+
         this.gameNotOver = true;
         this.game_board = Board.getInstance();
         this.turn = new Turn();
-        System.out.println("\n~*~*~*~*~*~*~*~*~*~GAME BOARD~*~*~*~*~*~*~*~*~*~\n");
-        game_board.getNameMap().printMap();
-        System.out.println("\n\n\n");
-        System.out.println("\n~*~*~*~*~*~*~*~*~*~SPY MASTER CARD~*~*~*~*~*~*~*~*~*~\n");
-        game_board.getMapCard().printMap();
 
-        System.out.println("\n\n\n");
         System.out.println("\n~*~*~*~*~*~*~*~*~*~eyal's main~*~*~*~*~*~*~*~*~*~\n");
 
         // eyal's main
@@ -31,51 +37,19 @@ public class GameRunner {
         playerList = Arrays.asList(player1, player2, player3, player4);
 
         for(Player p : playerList) {
+            gameNotOver = notPlayState.doAction(p,game_board,turn);
             mediator.addPlayer(p);
         }
         player1.send("Hey everyone, lets start?");
     }
 
-    public void handleRegularPlayer(String playerInput, String playerGroup) {
-        String[] playerAction = playerInput.split("#");
-        for(String action: playerAction) {
-            String[] wordLocation = action.split(",");
-            int wordRow = Integer.parseInt(wordLocation[0]);
-            int wordColumn = Integer.parseInt(wordLocation[1]);
-            String locationColor = game_board.getMapCard().getMapCardSpot()[wordRow][wordColumn].getColor().toString();
-            if (locationColor.equals(playerGroup)) {
-                if (playerGroup.equals("BLUE")) {
-                    this.turn.setBlueGroupScore(this.turn.getBlueGroupScore() + 1);
-                    this.game_board.getResultCardPile().draw("BLUE");
-                } else if (playerGroup.equals("RED")) {
-                    this.turn.setRedGroupScore(this.turn.getRedGroupScore() + 1);
-                    this.game_board.getResultCardPile().draw("RED");
-                }
-            } else if (locationColor.equals("BLACK")) {
-                this.game_board.getResultCardPile().draw("BLACK");
-                if (playerGroup.equals("BLUE")) {
-                    this.turn.setBlueGroupScore(-1);
-                } else if (playerGroup.equals("RED")) {
-                    this.turn.setRedGroupScore(-1);
-                }
-                this.gameNotOver = false;
-            }
-            else {
-                this.game_board.getResultCardPile().draw("GRAY");
-            }
-        }
-    }
-    public void handlePlayerActions(Player player) {
-        String playerGroup = player.getGroupColor();
-        String playerInput = player.getRole().doRole();
-        if (player.getRole() instanceof RegularPlayerRole) {
-            handleRegularPlayer(playerInput, playerGroup);
-        }
-    }
     public void gameLoop() {
         while (this.gameNotOver) {
             for(Player player : playerList) {
-                handlePlayerActions(player);
+                currentTeamPlay = player.getGroupColor();
+                currentRolePlay = player.getRole();
+                System.out.println("Turn : " + player.name + ",Team: " + currentTeamPlay+",Role: "+currentRolePlay);
+                gameNotOver = playState.doAction(player,game_board,turn);
             }
             this.turn.printTurnStatistics();
             this.turn.incrementTurnNumber();
