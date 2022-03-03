@@ -30,12 +30,20 @@ public class RegularPlayerRole implements PlayerRole{
                 if (playerGroup.equals("BLUE")) {
                     turn.setBlueGroupScore(turn.getBlueGroupScore() + 1);
                     game_board.getResultCardPile().draw("BLUE");
+                    ColorCard colorCard= new ColorCard("BLUE"); //TODO: change it to pre-initialized card
+                    game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
                 } else if (playerGroup.equals("RED")) {
                     turn.setRedGroupScore(turn.getRedGroupScore() + 1);
                     game_board.getResultCardPile().draw("RED");
+                    ColorCard colorCard= new ColorCard("RED"); //TODO: change it to pre-initialized card
+                    game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
+
                 }
             } else if (locationColor.equals("BLACK")) {
                 game_board.getResultCardPile().draw("BLACK");
+                ColorCard colorCard= new ColorCard("BLACK"); //TODO: change it to pre-initialized card
+                game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
+
                 if (playerGroup.equals("BLUE")) {
                     turn.setBlueGroupScore(-1);
                 } else if (playerGroup.equals("RED")) {
@@ -44,6 +52,8 @@ public class RegularPlayerRole implements PlayerRole{
                 return false; //gameNotOver = false
             } else {
                 game_board.getResultCardPile().draw("GRAY");
+                ColorCard colorCard= new ColorCard("GRAY"); //TODO: change it to pre-initialized card
+                game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
             }
         }
         return true;
