@@ -1,3 +1,8 @@
+package Players;
+
+import Maps.Board;
+import Maps.Turn;
+
 import java.util.Scanner;
 
 public class SpymasterRole implements PlayerRole {

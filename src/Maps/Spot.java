@@ -1,3 +1,5 @@
+package Maps;
+
 public class Spot {
     private int location_x;
     private int location_y;

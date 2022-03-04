@@ -1,3 +1,5 @@
+package Maps;
+
 public class NameMapSpot extends Spot{
     private String name;
 

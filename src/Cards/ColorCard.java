@@ -1,18 +1,21 @@
-public class AssassinCard implements AbstractResultCard{
+package Cards;
+
+public class ColorCard implements AbstractResultCard{
     protected String color;
     protected boolean isUsed;
-    public AssassinCard(){
+    public ColorCard(String color){
+        this.color=color;
         this.isUsed=false;
-        this.color = "BLACK";
-    }
-    @Override
-    public void useCard() {
-        this.isUsed=true;
     }
 
     @Override
     public String getColor() {
         return color;
+    }
+
+    @Override
+    public void useCard() {
+        this.isUsed=true;
     }
 
     @Override

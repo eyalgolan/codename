@@ -1,3 +1,5 @@
+package Maps;
+
 public class Turn {
     private int turnNumber;
     private int blueGroupScore;
@@ -34,7 +36,7 @@ public class Turn {
     }
 
     public void printTurnStatistics() {
-        System.out.println("~*~*~*~*~*~*~*~*~*~ Turn " + this.turnNumber + " ~*~*~*~*~*~*~*~*~*~");
+        System.out.println("~*~*~*~*~*~*~*~*~*~ Maps.Turn " + this.turnNumber + " ~*~*~*~*~*~*~*~*~*~");
         System.out.println("Blue group score: " + this.blueGroupScore);
         System.out.println("Red group score: " + this.redGroupScore);
         System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");

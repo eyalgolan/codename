@@ -1,3 +1,6 @@
+import Maps.*;
+import Players.*;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,7 +48,7 @@ public class GameRunner {
     }
     public void printWhoIsPlaying(Player player) {
         System.out.println("~*~*~*~*~*~*~*~*~*~");
-        System.out.println("Turn : " + player.name +
+        System.out.println("Maps.Turn : " + player.getName() +
                 "\nTeam: " + currentTeamPlay +
                 "\nRole: " + currentRolePlay);
         System.out.println("~*~*~*~*~*~*~*~*~*~");
@@ -68,10 +71,10 @@ public class GameRunner {
         GameRunner game = new GameRunner();
         game.gameLoop();
     }
-    // check the turn and give permission to player - update Turn
+    // check the turn and give permission to player - update Maps.Turn
     // get input from chat -
     //  if spymaster - 1) get input of clue
-    //                 2) check clue valid - if it does publish it on chat and update Turn to the player on his team
+    //                 2) check clue valid - if it does publish it on chat and update Maps.Turn to the player on his team
     //                                       if it doesn't - get another input (loop until valid)
     //  if player -    1) get input of guess
     //                 2) check if guess is correct

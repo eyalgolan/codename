@@ -1,4 +1,7 @@
-import java.util.ArrayList;
+package Maps;
+
+import Cards.NameCardPile;
+import Cards.ResultCardPile;
 
 public class Board {
     // Singelton Class
@@ -18,7 +21,7 @@ public class Board {
         this.mapCard = new MapCard();
     }
 
-    //Static method to create instance of singelton Board class
+    //Static method to create instance of singelton Maps.Board class
     public static Board getInstance()
     {
         if(singel_instance_board == null){
@@ -32,7 +35,7 @@ public class Board {
         return this.nameMap;
     }
 
-    // getter MapCard (only for masters)
+    // getter Maps.MapCard (only for masters)
     public MapCard getMapCard(){
         return this.mapCard;
     }

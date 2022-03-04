@@ -1,3 +1,8 @@
+package Maps;
+
+import Cards.AbstractResultCard;
+import Cards.NameCardPile;
+
 public class NameMap {
     private NameCardPile nameCardPile;
 

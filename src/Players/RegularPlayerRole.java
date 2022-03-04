@@ -1,3 +1,11 @@
+package Players;
+
+import Cards.AssassinCard;
+import Cards.BystanderCard;
+import Cards.ColorCard;
+import Maps.Board;
+import Maps.Turn;
+
 import java.util.Scanner;
 
 public class RegularPlayerRole implements PlayerRole{
@@ -49,7 +57,7 @@ public class RegularPlayerRole implements PlayerRole{
         }
     }
 
-    private boolean handleRegularPlayer(String playerInput, String playerGroup,Board gameBoard, Turn turn) {
+    private boolean handleRegularPlayer(String playerInput, String playerGroup, Board gameBoard, Turn turn) {
         String[] playerAction = playerInput.split("#");
         boolean gameCanContinue = true;
         for (String action : playerAction) {

@@ -1,3 +1,8 @@
+package Players;
+
+import Maps.Board;
+import Maps.Turn;
+
 public class LockedState implements State {
 
     public boolean doAction(Player player, Board game_board, Turn turn) {

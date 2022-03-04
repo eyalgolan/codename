@@ -1,3 +1,5 @@
+package Cards;
+
 public class BystanderCard implements AbstractResultCard{
     protected String color;
     protected boolean isUsed;

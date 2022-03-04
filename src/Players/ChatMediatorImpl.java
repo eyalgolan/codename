@@ -1,3 +1,5 @@
+package Players;
+
 import java.util.ArrayList;
 import java.util.List;
 public class ChatMediatorImpl implements ChatMediator {

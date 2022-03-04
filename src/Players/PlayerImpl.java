@@ -1,3 +1,5 @@
+package Players;
+
 public class PlayerImpl extends Player {
     public PlayerImpl(ChatMediator med, String name, PlayerRole role, String groupColor) {
         super(med, name, role, groupColor);

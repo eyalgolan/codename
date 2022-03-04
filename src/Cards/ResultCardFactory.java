@@ -1,3 +1,5 @@
+package Cards;
+
 public class ResultCardFactory implements AbstractFactory{
     //use getCard method to get object of type shape
     @Override

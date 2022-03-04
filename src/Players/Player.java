@@ -1,3 +1,5 @@
+package Players;
+
 public abstract class Player {
     protected ChatMediator mediator;
     protected String name;
@@ -20,6 +22,8 @@ public abstract class Player {
     public String getGroupColor() {
         return groupColor;
     }
+
+    public String getName() { return name; }
 
     public void setState(State state){
         this.state = state;
