@@ -29,12 +29,12 @@ public class RegularPlayerRole implements PlayerRole{
     }
 
     private void makeMoveGray(Board gameBoard, int wordRow, int wordColumn) {
-        ColorCard colorCard = (ColorCard) gameBoard.getResultCardPile().draw("GRAY");
-        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,colorCard);
+        BystanderCard card = (BystanderCard) gameBoard.getResultCardPile().draw("GRAY");
+        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,card);
     }
     private void makeMoveBlack(Turn turn, Board gameBoard, int wordRow, int wordColumn, String playerGroup) {
-        ColorCard colorCard = (ColorCard) gameBoard.getResultCardPile().draw("BLACK");
-        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,colorCard);
+        AssassinCard card = (AssassinCard) gameBoard.getResultCardPile().draw("BLACK");
+        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,card);
         if (playerGroup.equals("BLUE")) {
             turn.setBlueGroupScore(-1);
         } else if (playerGroup.equals("RED")) {
