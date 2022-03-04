@@ -1,4 +1,4 @@
 public interface PlayerRole {
-    public boolean doRole(Player player, Board game_board, Turn turn);
-    public String toString();
+    boolean doRole(Player player, Board game_board, Turn turn);
+    String toString();
 }

@@ -1,4 +1,4 @@
 public interface State {
-    public boolean doAction(Player player, Board game_board, Turn turn);
-    public String toString();
+    boolean doAction(Player player, Board game_board, Turn turn);
+    String toString();
 }

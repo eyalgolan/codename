@@ -1,13 +1,4 @@
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.ArrayList;
-import java.util.Random;
-
 public class NameMap {
-
-    private static final Random rand = new Random();
     private NameCardPile nameCardPile;
 
     //array of spots (but show only location and colors)

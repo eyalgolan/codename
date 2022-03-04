@@ -1,5 +1,5 @@
 public interface AbstractResultCard {
-    public String getColor();
-    public void useCard();
-    public boolean isUsed();
+    String getColor();
+    void useCard();
+    boolean isUsed();
 }

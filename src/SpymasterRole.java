@@ -17,12 +17,6 @@ public class SpymasterRole implements PlayerRole {
         return true;
     }
 
-    private boolean handleSpyMasterPlayer(String playerInput, String playerGroup, Board game_board, Turn turn) {
-//TODO: complete
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxx- COMPLETE SPY MASTER FUNCTION! - in SpyMasterRole xxxxxxxxxxxxxxxxxxxxxxx");
-        return true;
-    }
-
     @Override
     public String toString() {
         return "Spymaster";

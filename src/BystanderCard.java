@@ -1,7 +1,7 @@
 public class BystanderCard implements AbstractResultCard{
     protected String color;
     protected boolean isUsed;
-    public BystanderCard(){
+    public BystanderCard() {
         this.isUsed=false;
         this.color = "GREY";
     }
