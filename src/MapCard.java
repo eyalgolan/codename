@@ -4,11 +4,11 @@ import java.nio.file.Paths;
 import java.util.*;
 
 public class MapCard {
-    //array of spots (but show only location and colors)
+    // array of spots (but show only location and colors)
     private MapCardSpot[][] grid = new MapCardSpot[5][5];
     private int numOfBlue = 0 , numOfRed = 0, numOfGray = 0, numOfBlack = 0;
 
-    //constructor without params for random colors and spots.
+    // constructor without params for random colors and spots.
     public MapCard(){
         grid = InitMapCard();
     }
@@ -32,10 +32,10 @@ public class MapCard {
 
     public MapCardSpot[][] InitMapCard(){
         MapCardSpot[][] grid = new MapCardSpot[5][5];
-        for (int i=0; i<grid.length; i++){
-            for (int j=0; j<grid[i].length;j++){
+        for (int i = 0 ; i < grid.length ; i++){
+            for (int j = 0 ; j < grid[i].length ; j++){
                 MapCardSpot.Colors color = ChoseRandomColor();
-                grid[i][j] = new MapCardSpot(i,j,color);
+                grid[i][j] = new MapCardSpot(i, j, color);
             }
         }
         return grid;
@@ -44,20 +44,17 @@ public class MapCard {
     public MapCardSpot.Colors ChoseRandomColor(){
         List<MapCardSpot.Colors> ColorChoices = new ArrayList<MapCardSpot.Colors>();
         MapCardSpot.Colors color;
-        //
-        //NUM_OF_PARTICIPATE
         //TODO: check if more enum needed and how many colors at the map from each!
-        int chose = 2;
-        if (numOfBlack<1){
+        if (numOfBlack < 1){
             ColorChoices.add(MapCardSpot.Colors.BLACK);
         }
-        if (numOfBlue<8){
+        if (numOfBlue < 8){
             ColorChoices.add(MapCardSpot.Colors.BLUE);
         }
-        if(numOfRed<9){
+        if(numOfRed < 9){
             ColorChoices.add(MapCardSpot.Colors.RED);
         }
-        if(numOfGray<7){
+        if(numOfGray < 7){
             ColorChoices.add(MapCardSpot.Colors.GRAY);
         }
         color = MapCardSpot.Colors.randomColorForSpot(ColorChoices);
@@ -76,7 +73,6 @@ public class MapCard {
     }
 
     public void printMap(){
-//        String[][] array
         System.out.print("    |");
         for (int i = 0; i < grid[0].length; i++){
             System.out.print("    ");
@@ -110,6 +106,5 @@ public class MapCard {
             System.out.println();
         }
     }
-
 }
 

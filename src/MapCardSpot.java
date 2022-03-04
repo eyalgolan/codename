@@ -3,12 +3,10 @@ import java.util.List;
 import java.util.Random;
 
 public class MapCardSpot extends Spot{
-    static int NUM_OF_PARTICIPATES = 2; //TODO: ADD MORE PARTICIPATES?
     public enum Colors {
-        BLUE,RED,GRAY,BLACK; // TODO: ADD MORE COLORS?
+        BLUE,RED,GRAY,BLACK;
         private static final Random rand = new Random();
         public static Colors randomColorForSpot(List<Colors> ColorChoices){
-            //TODO : change random to real random
             return ColorChoices.get(rand.nextInt(ColorChoices.size()));
         }
         public String toString(){
@@ -40,7 +38,7 @@ public class MapCardSpot extends Spot{
         return this.color.toString();
     }
 
-    public Colors getColor() {
-        return color;
+    public String getColor() {
+        return color.toString();
     }
 }

@@ -78,7 +78,7 @@ public class NameMap {
     }
 
     public void setCardOnNameMap(int i, int j, AbstractResultCard card){
-        this.grid[i][j] = new NameMapSpot(i,j,"X-X-"+card.getColor()+"-X-X");
+        this.grid[i][j] = new NameMapSpot(i,j,"X-"+card.getColor()+"-X");
     }
 
 }

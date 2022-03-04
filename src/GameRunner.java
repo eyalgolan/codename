@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class GameRunner {
-    private Board game_board;
+    private Board gameBoard;
     private Turn turn;
     private boolean gameNotOver;
     private ChatMediator mediator;
@@ -22,7 +22,7 @@ public class GameRunner {
         this.lockedState = new LockedState();
 
         this.gameNotOver = true;
-        this.game_board = Board.getInstance();
+        this.gameBoard = Board.getInstance();
         this.turn = new Turn();
 
 
@@ -39,7 +39,7 @@ public class GameRunner {
         Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole(), "BLUE");
         this.playerList = Arrays.asList(player1, player2, player3, player4);
         for(Player p : playerList) {
-            gameNotOver = lockedState.doAction(p,game_board,turn);
+            gameNotOver = lockedState.doAction(p, gameBoard,turn);
             mediator.addPlayer(p);
         }
     }
@@ -56,8 +56,8 @@ public class GameRunner {
                 currentTeamPlay = player.getGroupColor();
                 currentRolePlay = player.getRole();
                 printWhoIsPlaying(player);
-                gameNotOver = playingState.doAction(player, game_board, turn);
-                lockedState.doAction(player, game_board, turn);
+                gameNotOver = playingState.doAction(player, gameBoard, turn);
+                lockedState.doAction(player, gameBoard, turn);
             }
             this.turn.printTurnStatistics();
             this.turn.incrementTurnNumber();

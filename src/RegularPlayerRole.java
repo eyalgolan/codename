@@ -4,9 +4,9 @@ import java.util.Scanner;
 
 public class RegularPlayerRole implements PlayerRole{
     @Override
-    public boolean doRole(Player player, Board game_board, Turn turn) {
+    public boolean doRole(Player player, Board gameBoard, Turn turn) {
         System.out.println("\n~*~*~*~*~*~*~*~*~*~GAME BOARD~*~*~*~*~*~*~*~*~*~\n");
-        game_board.getNameMap().printMap();
+        gameBoard.getNameMap().printMap();
         System.out.println("\n\n\n");
 
         String playerGroup = player.getGroupColor();
@@ -15,48 +15,64 @@ public class RegularPlayerRole implements PlayerRole{
                 "in the following format: row,column#row,column");
         String playerInput = sc.nextLine();
         player.send(playerInput);
-        return handleRegularPlayer(playerInput, playerGroup, game_board, turn);
+        return handleRegularPlayer(playerInput, playerGroup, gameBoard, turn);
     }
 
-    private boolean handleRegularPlayer(String playerInput, String playerGroup,Board game_board, Turn turn) {
+    private void makeMove(Turn turn, Board gameBoard, int wordRow, int wordColumn, String playerGroup) {
+        if (playerGroup.equals("BLUE")) {
+            turn.setBlueGroupScore(turn.getBlueGroupScore() + 1);
+        } else if (playerGroup.equals("RED")) {
+            turn.setRedGroupScore(turn.getRedGroupScore() + 1);
+        }
+        ColorCard colorCard = (ColorCard) gameBoard.getResultCardPile().draw(playerGroup);
+        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,colorCard);
+    }
 
+    private void makeMoveGray(Board gameBoard, int wordRow, int wordColumn) {
+        ColorCard colorCard = (ColorCard) gameBoard.getResultCardPile().draw("GRAY");
+        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,colorCard);
+    }
+    private void makeMoveBlack(Turn turn, Board gameBoard, int wordRow, int wordColumn, String playerGroup) {
+        ColorCard colorCard = (ColorCard) gameBoard.getResultCardPile().draw("BLACK");
+        gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,colorCard);
+        if (playerGroup.equals("BLUE")) {
+            turn.setBlueGroupScore(-1);
+        } else if (playerGroup.equals("RED")) {
+            turn.setRedGroupScore(-1);
+        }
+    }
+
+    private void makeOppositeMove(Turn turn, Board gameBoard, int wordRow, int wordColumn, String playerGroup) {
+        if (playerGroup.equals("BLUE")) {
+            makeMove(turn, gameBoard, wordRow, wordColumn, "RED");
+        }
+        else {
+            makeMove(turn, gameBoard, wordRow, wordColumn, "BLUE");
+        }
+    }
+
+    private boolean handleRegularPlayer(String playerInput, String playerGroup,Board gameBoard, Turn turn) {
         String[] playerAction = playerInput.split("#");
+        boolean gameCanContinue = true;
         for (String action : playerAction) {
             String[] wordLocation = action.split(",");
-            int wordRow = Integer.parseInt(wordLocation[0]);
-            int wordColumn = Integer.parseInt(wordLocation[1]);
-            String locationColor = game_board.getMapCard().getMapCardSpot()[wordRow-1][wordColumn-1].getColor().toString();
+            int wordRow = Integer.parseInt(wordLocation[0]) - 1;
+            int wordColumn = Integer.parseInt(wordLocation[1]) - 1;
+            String locationColor = gameBoard.getMapCard().getMapCardSpot()[wordRow][wordColumn].getColor();
             if (locationColor.equals(playerGroup)) {
-                if (playerGroup.equals("BLUE")) {
-                    turn.setBlueGroupScore(turn.getBlueGroupScore() + 1);
-                    game_board.getResultCardPile().draw("BLUE");
-                    ColorCard colorCard= new ColorCard("BLUE"); //TODO: change it to pre-initialized card
-                    game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
-                } else if (playerGroup.equals("RED")) {
-                    turn.setRedGroupScore(turn.getRedGroupScore() + 1);
-                    game_board.getResultCardPile().draw("RED");
-                    ColorCard colorCard= new ColorCard("RED"); //TODO: change it to pre-initialized card
-                    game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
-
-                }
+                makeMove(turn, gameBoard, wordRow, wordColumn, playerGroup);
             } else if (locationColor.equals("BLACK")) {
-                game_board.getResultCardPile().draw("BLACK");
-                ColorCard colorCard= new ColorCard("BLACK"); //TODO: change it to pre-initialized card
-                game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
-
-                if (playerGroup.equals("BLUE")) {
-                    turn.setBlueGroupScore(-1);
-                } else if (playerGroup.equals("RED")) {
-                    turn.setRedGroupScore(-1);
-                }
-                return false; //gameNotOver = false
-            } else {
-                game_board.getResultCardPile().draw("GRAY");
-                ColorCard colorCard= new ColorCard("GRAY"); //TODO: change it to pre-initialized card
-                game_board.getNameMap().setCardOnNameMap(wordRow-1,wordColumn-1,colorCard);
+                makeMoveBlack(turn, gameBoard, wordRow, wordColumn, playerGroup);
+                gameCanContinue = false;
+                break;
+            } else if (locationColor.equals("GREY")) {
+                makeMoveGray(gameBoard, wordRow, wordColumn);
+            }
+            else {
+                makeOppositeMove(turn, gameBoard, wordRow, wordColumn, playerGroup);
             }
         }
-        return true;
+        return gameCanContinue;
     }
 
     @Override
