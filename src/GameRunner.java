@@ -41,7 +41,7 @@ public class GameRunner {
         Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole(), "BLUE");
         this.playerList = Arrays.asList(player1, player2, player3, player4);
         for(Player p : playerList) {
-            canGameContinue = lockedState.doAction(p, gameBoard,turn);
+            lockedState.doAction(p, gameBoard,turn);
             mediator.addPlayer(p);
         }
         this.playerGroups[0] = new Group("RED", List.of(player1), List.of(player3));
