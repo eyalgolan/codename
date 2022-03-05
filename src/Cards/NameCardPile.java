@@ -1,9 +1,5 @@
 package Cards;
 
-import Cards.AbstractCard;
-import Cards.CardPile;
-import Cards.NameCard;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -14,6 +10,7 @@ import java.util.Stack;
 public class NameCardPile implements CardPile {
     private Stack<NameCard> nameCards;
     private static final Random rand = new Random();
+    private String pathToWords = "C:\\Users\\eyalg\\IdeaProjects\\codename\\src\\WordsTest.txt";
 
     public NameCardPile(String configMapFileName) {
 
@@ -32,8 +29,7 @@ public class NameCardPile implements CardPile {
     public ArrayList<String> LoadNameFile (String configMapFileName){
         ArrayList<String> names = new ArrayList<String>();
         try{
-            for (String name : Files.readAllLines(Paths.get("C:\\Users\\eyalg\\IdeaProjects\\codename\\src\\WordsTest.txt"))){ //TODO: configMapFileName
-//            for (String name : Files.readAllLines(pathToFile)){ //TODO: configMapFileName
+            for (String name : Files.readAllLines(Paths.get(pathToWords))) {
                 names.add(name);
             }
         } catch (IOException e) {
@@ -42,7 +38,7 @@ public class NameCardPile implements CardPile {
         return names;
     }
 
-    //chose random name TODO: make it real random
+    //chose random name
     public int ChoseRandomName(ArrayList<String> names){
         int index = rand.nextInt(names.size());
         return index;

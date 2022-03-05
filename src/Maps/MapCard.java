@@ -12,7 +12,7 @@ public class MapCard {
 
     // constructor without params for random colors and spots.
     public MapCard(){
-        grid = InitMapCard();
+        grid = initMapCard();
     }
 
     // constructor with specific list of Spots
@@ -32,21 +32,20 @@ public class MapCard {
         }
     }
 
-    public MapCardSpot[][] InitMapCard(){
+    public MapCardSpot[][] initMapCard(){
         MapCardSpot[][] grid = new MapCardSpot[5][5];
         for (int i = 0 ; i < grid.length ; i++){
             for (int j = 0 ; j < grid[i].length ; j++){
-                MapCardSpot.Colors color = ChoseRandomColor();
+                MapCardSpot.Colors color = choseRandomColor();
                 grid[i][j] = new MapCardSpot(i, j, color);
             }
         }
         return grid;
     }
 
-    public MapCardSpot.Colors ChoseRandomColor(){
+    public MapCardSpot.Colors choseRandomColor(){
         List<MapCardSpot.Colors> ColorChoices = new ArrayList<MapCardSpot.Colors>();
         MapCardSpot.Colors color;
-        //TODO: check if more enum needed and how many colors at the map from each!
         if (numOfBlack < 1){
             ColorChoices.add(MapCardSpot.Colors.BLACK);
         }
@@ -69,7 +68,6 @@ public class MapCard {
         return color;
     }
 
-    //from interface MAP TODO: crate common interface
     public MapCardSpot[][] getMapCardSpot(){
         return this.grid;
     }
@@ -109,4 +107,3 @@ public class MapCard {
         }
     }
 }
-

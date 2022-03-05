@@ -4,8 +4,8 @@ public class ColorCard implements AbstractResultCard{
     protected String color;
     protected boolean isUsed;
     public ColorCard(String color){
-        this.color=color;
-        this.isUsed=false;
+        this.color = color;
+        this.isUsed = false;
     }
 
     @Override

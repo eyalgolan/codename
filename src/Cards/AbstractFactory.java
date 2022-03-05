@@ -1,5 +1,5 @@
 package Cards;
 
 public interface AbstractFactory {
-    public AbstractResultCard createCard(String cardType, String color);
+    AbstractResultCard createCard(String cardType, String color);
 }

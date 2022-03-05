@@ -16,7 +16,6 @@ public class ResultCardFactory implements AbstractFactory{
         } else if(cardType.equalsIgnoreCase("Color")){
             return new ColorCard(color);
         }
-
         return null;
     }
 }

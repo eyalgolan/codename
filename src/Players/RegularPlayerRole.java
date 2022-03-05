@@ -35,11 +35,11 @@ public class RegularPlayerRole implements PlayerRole{
     }
 
     private void makeMoveGray(Board gameBoard, int wordRow, int wordColumn) {
-        BystanderCard card = (BystanderCard) gameBoard.getResultCardPile().draw("GRAY");
+        BystanderCard card = (BystanderCard) gameBoard.getResultCardPile().draw(BystanderCard.color);
         gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,card);
     }
     private void makeMoveBlack(Turn turn, Board gameBoard, int wordRow, int wordColumn, String playerGroup) {
-        AssassinCard card = (AssassinCard) gameBoard.getResultCardPile().draw("BLACK");
+        AssassinCard card = (AssassinCard) gameBoard.getResultCardPile().draw(AssassinCard.color);
         gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,card);
         if (playerGroup.equals("BLUE")) {
             turn.setBlueGroupScore(-1);
@@ -69,11 +69,11 @@ public class RegularPlayerRole implements PlayerRole{
             String locationColor = gameBoard.getMapCard().getMapCardSpot()[wordRow][wordColumn].getColor();
             if (locationColor.equals(playerGroup)) {
                 makeMove(turn, gameBoard, wordRow, wordColumn, playerGroup);
-            } else if (locationColor.equals("BLACK")) {
+            } else if (locationColor.equals(AssassinCard.color)) {
                 makeMoveBlack(turn, gameBoard, wordRow, wordColumn, playerGroup);
                 gameCanContinue = false;
                 break;
-            } else if (locationColor.equals("GRAY")) {
+            } else if (locationColor.equals(BystanderCard.color)) {
                 makeMoveGray(gameBoard, wordRow, wordColumn);
             }
             else {

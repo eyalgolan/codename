@@ -1,11 +1,10 @@
 package Cards;
 
 public class BystanderCard implements AbstractResultCard{
-    protected String color;
+    public static String color = "GRAY";
     protected boolean isUsed;
     public BystanderCard() {
-        this.isUsed=false;
-        this.color = "GRAY";
+        this.isUsed = false;
     }
     @Override
     public void useCard() {
@@ -14,7 +13,7 @@ public class BystanderCard implements AbstractResultCard{
 
     @Override
     public String getColor() {
-        return color;
+        return this.color;
     }
 
     @Override

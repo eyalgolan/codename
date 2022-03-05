@@ -1,7 +1,5 @@
 package Cards;
 
-import Cards.AbstractCard;
-
 public class NameCard implements AbstractCard {
     protected String word;
     public NameCard(String word) {

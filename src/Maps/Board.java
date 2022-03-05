@@ -5,17 +5,17 @@ import Cards.ResultCardPile;
 
 public class Board {
     // Singelton Class
-    private static Board singel_instance_board = null;
+    private static Board single_instance_board = null;
     private NameCardPile nameCardPile;
     private MapCard mapCard; //locations and colors
     private NameMap nameMap; //locations and names
     private ResultCardPile resultCardPile;
-    public String s;
+    private String PathToWords = "WordsTest.txt";
 
     //Constructor
     private Board()
     {
-        this.nameCardPile = new NameCardPile("WordsTest.txt"); //TODO: name of the file - how to chose what constructor we need to use (singelton)??
+        this.nameCardPile = new NameCardPile(PathToWords);
         this.resultCardPile = new ResultCardPile();
         this.nameMap = new NameMap(nameCardPile);
         this.mapCard = new MapCard();
@@ -24,10 +24,10 @@ public class Board {
     //Static method to create instance of singelton Maps.Board class
     public static Board getInstance()
     {
-        if(singel_instance_board == null){
-            singel_instance_board = new Board();
+        if(single_instance_board == null){
+            single_instance_board = new Board();
         }
-        return singel_instance_board;
+        return single_instance_board;
     }
 
     // getter nameMap (for all players)

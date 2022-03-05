@@ -7,7 +7,7 @@ import java.util.List;
 public class GameRunner {
     private Board gameBoard;
     private Turn turn;
-    private boolean gameNotOver;
+    private boolean canGameContinue;
     private ChatMediator mediator;
     private List<Player> playerList;
     private Group[] playerGroups = new Group[2];
@@ -25,7 +25,7 @@ public class GameRunner {
         this.playingState = new PlayingState();
         this.lockedState = new LockedState();
 
-        this.gameNotOver = true;
+        this.canGameContinue = true;
         this.gameBoard = Board.getInstance();
         this.turn = new Turn();
 
@@ -41,7 +41,7 @@ public class GameRunner {
         Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole(), "BLUE");
         this.playerList = Arrays.asList(player1, player2, player3, player4);
         for(Player p : playerList) {
-            gameNotOver = lockedState.doAction(p, gameBoard,turn);
+            canGameContinue = lockedState.doAction(p, gameBoard,turn);
             mediator.addPlayer(p);
         }
         this.playerGroups[0] = new Group("RED", List.of(player1), List.of(player3));
@@ -49,7 +49,7 @@ public class GameRunner {
     }
     public void printWhoIsPlaying(Player player) {
         System.out.println("~*~*~*~*~*~*~*~*~*~");
-        System.out.println("Maps.Turn : " + player.getName() +
+        System.out.println("Player: " + player.getName() +
                 "\nTeam: " + currentTeamPlay +
                 "\nRole: " + currentRolePlay);
         System.out.println("~*~*~*~*~*~*~*~*~*~");
@@ -59,28 +59,27 @@ public class GameRunner {
         for(Player spymaster : group.getSpyMasters()) {
             currentTeamPlay = spymaster.getGroupColor();
             currentRolePlay = spymaster.getRole();
-            printWhoIsPlaying(spymaster);
             playingState.doAction(spymaster, gameBoard, turn);
             lockedState.doAction(spymaster, gameBoard, turn);
         }
     }
 
-    public void runGroupRegularPlayers(Group group) {
+    public boolean runGroupRegularPlayers(Group group) {
         for(Player regularPlayer : group.getRegularPlayers()) {
             currentTeamPlay = regularPlayer.getGroupColor();
             currentRolePlay = regularPlayer.getRole();
-            printWhoIsPlaying(regularPlayer);
-            gameNotOver = playingState.doAction(regularPlayer, gameBoard, turn);
+            canGameContinue = playingState.doAction(regularPlayer, gameBoard, turn);
             lockedState.doAction(regularPlayer, gameBoard, turn);
-            if (!gameNotOver) {return; }
+            if (!canGameContinue) {break; }
         }
+        return canGameContinue;
     }
-    
+
     public void gameLoop() {
-        while (this.gameNotOver) {
+        while (this.canGameContinue) {
             for(Group group : playerGroups) {
                 runGroupSpyMasters(group);
-                runGroupRegularPlayers(group);
+                if (!runGroupRegularPlayers(group)) { return; }
             }
             this.turn.printTurnStatistics();
             this.turn.incrementTurnNumber();

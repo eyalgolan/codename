@@ -11,6 +11,6 @@ public class PlayerImpl extends Player {
     }
     @Override
     public void receive(String msg) {
-        System.out.println(this.name+": Received Message:"+msg);
+        System.out.println(this.name+": Received Message:" + msg);
     }
 }

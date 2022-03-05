@@ -31,8 +31,6 @@ public class NameMap {
         return grid;
     }
 
-
-    //from interface MAP TODO: crate common interface
     public NameMapSpot[][] GetNameMapSpots (){
         return this.grid;
     }
