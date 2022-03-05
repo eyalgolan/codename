@@ -43,8 +43,10 @@ public class RegularPlayerRole implements PlayerRole{
         gameBoard.getNameMap().setCardOnNameMap(wordRow,wordColumn,card);
         if (playerGroup.equals("BLUE")) {
             turn.setBlueGroupScore(-1);
+            turn.printSuddenDeath(playerGroup);
         } else if (playerGroup.equals("RED")) {
             turn.setRedGroupScore(-1);
+            turn.printSuddenDeath(playerGroup);
         }
     }
 
@@ -71,7 +73,7 @@ public class RegularPlayerRole implements PlayerRole{
                 makeMoveBlack(turn, gameBoard, wordRow, wordColumn, playerGroup);
                 gameCanContinue = false;
                 break;
-            } else if (locationColor.equals("GREY")) {
+            } else if (locationColor.equals("GRAY")) {
                 makeMoveGray(gameBoard, wordRow, wordColumn);
             }
             else {

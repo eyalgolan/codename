@@ -41,4 +41,28 @@ public class Turn {
         System.out.println("Red group score: " + this.redGroupScore);
         System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
     }
+
+    public void printWhoWon() {
+        if (this.blueGroupScore > this.redGroupScore) {
+            System.out.println("~*~*~*~*~*~*~*~*~*~");
+            System.out.println("The blue group won!");
+            System.out.println("~*~*~*~*~*~*~*~*~*~");
+        }
+        else if (this.redGroupScore > this.blueGroupScore) {
+            System.out.println("~*~*~*~*~*~*~*~*~*~");
+            System.out.println("The red group won!");
+            System.out.println("~*~*~*~*~*~*~*~*~*~");
+        }
+        else {
+            System.out.println("~*~*~*~*~*~*~*~*~*~");
+            System.out.println("It's a draw!");
+            System.out.println("~*~*~*~*~*~*~*~*~*~");
+        }
+    }
+
+    public void printSuddenDeath(String groupColor) {
+        System.out.println("~*~*~*~*~*~*~*~*~*~");
+        System.out.println("The " + groupColor + " group lost.");
+        System.out.println("~*~*~*~*~*~*~*~*~*~");
+    }
 }

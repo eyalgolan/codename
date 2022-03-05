@@ -14,7 +14,7 @@ public class ResultCardPile implements AbstractCardPile {
 
         addCards("Color", "RED", 9);
         addCards("Color", "BLUE", 8);
-        addCards("Bystander", "GREY", 7);
+        addCards("Bystander", "GRAY", 7);
         addCards("Assassin", "BLACK", 1);
     }
 
