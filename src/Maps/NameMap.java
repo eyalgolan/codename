@@ -2,8 +2,9 @@ package Maps;
 
 import Cards.AbstractResultCard;
 import Cards.NameCardPile;
+import UI.UIbase;
 
-public class NameMap {
+public class NameMap{
     private NameCardPile nameCardPile;
 
     //array of spots (but show only location and colors)
@@ -35,7 +36,7 @@ public class NameMap {
         return this.grid;
     }
 
-    public void printMap(){
+    public void printMap(UIbase console){
 //        String[][] array
         System.out.print("    |");
         for (int i = 0; i < grid[0].length; i++){
@@ -43,13 +44,13 @@ public class NameMap {
             System.out.print(i+1);
             System.out.print("    |");
         }
-        System.out.println();
+        console.print("");
         for (int i = 0; i < grid.length; i++){
             System.out.print("----+");
             for (int j = 0; j < grid[0].length; j++){
                 System.out.print("---------+");
             }
-            System.out.println();
+            console.print("");
             System.out.print("  " + (i + 1) + " |");
             for (int j = 0; j < grid[0].length; j++){
                 if (grid[i][j].getContent().length() < 10){
@@ -67,7 +68,7 @@ public class NameMap {
                 }
                 System.out.print("|");
             }
-            System.out.println();
+            console.print("");
         }
     }
 

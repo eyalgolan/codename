@@ -1,11 +1,13 @@
 package Maps;
 
+import UI.UIbase;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
-public class MapCard {
+public class MapCard{
     // array of spots (but show only location and colors)
     private MapCardSpot[][] grid = new MapCardSpot[5][5];
     private int numOfBlue = 0 , numOfRed = 0, numOfGray = 0, numOfBlack = 0;
@@ -72,20 +74,20 @@ public class MapCard {
         return this.grid;
     }
 
-    public void printMap(){
+    public void printMap(UIbase console){
         System.out.print("    |");
         for (int i = 0; i < grid[0].length; i++){
             System.out.print("    ");
             System.out.print(i+1);
             System.out.print("    |");
         }
-        System.out.println();
+        console.print("");
         for (int i = 0; i < grid.length; i++){
             System.out.print("----+");
             for (int j = 0; j < grid[0].length; j++){
                 System.out.print("---------+");
             }
-            System.out.println();
+            console.print("");
             System.out.print("  " + (i + 1) + " |");
             for (int j = 0; j < grid[0].length; j++){
                 if (grid[i][j].getContent().length() < 10){
@@ -103,7 +105,7 @@ public class MapCard {
                 }
                 System.out.print("|");
             }
-            System.out.println();
+            console.print("");
         }
     }
 }

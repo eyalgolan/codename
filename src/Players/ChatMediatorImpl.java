@@ -1,5 +1,7 @@
 package Players;
 
+import UI.UIbase;
+
 import java.util.ArrayList;
 import java.util.List;
 public class ChatMediatorImpl implements ChatMediator {
@@ -12,11 +14,11 @@ public class ChatMediatorImpl implements ChatMediator {
         this.players.add(player);
     }
     @Override
-    public void sendMessage(String msg, Player player) {
+    public void sendMessage(String msg, Player player, UIbase console) {
         for(Player p : this.players){
             // message should not be received by the user sending it
             if(p != player){
-                p.receive(msg);
+                p.receive(msg,console);
             }
         }
     }

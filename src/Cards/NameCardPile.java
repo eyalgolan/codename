@@ -10,7 +10,7 @@ import java.util.Stack;
 public class NameCardPile implements CardPile {
     private Stack<NameCard> nameCards;
     private static final Random rand = new Random();
-    private String pathToWords = "C:\\Users\\eyalg\\IdeaProjects\\codename\\src\\WordsTest.txt";
+    private String pathToWords = "C:\\Users\\obezra\\IdeaProjects\\codename\\src\\WordsTest.txt";
 
     public NameCardPile(String configMapFileName) {
 

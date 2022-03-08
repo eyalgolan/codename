@@ -1,5 +1,7 @@
 package Maps;
 
+import UI.UIbase;
+
 public class Turn {
     private int turnNumber;
     private int blueGroupScore;
@@ -35,34 +37,34 @@ public class Turn {
         this.redGroupScore = redGroupScore;
     }
 
-    public void printTurnStatistics() {
-        System.out.println("~*~*~*~*~*~*~*~*~*~ Maps.Turn " + this.turnNumber + " ~*~*~*~*~*~*~*~*~*~");
-        System.out.println("Blue group score: " + this.blueGroupScore);
-        System.out.println("Red group score: " + this.redGroupScore);
-        System.out.println("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
+    public void printTurnStatistics(UIbase console) {
+        console.print("~*~*~*~*~*~*~*~*~*~ Maps.Turn " + this.turnNumber + " ~*~*~*~*~*~*~*~*~*~");
+        console.print("Blue group score: " + this.blueGroupScore);
+        console.print("Red group score: " + this.redGroupScore);
+        console.print("~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~*~");
     }
 
-    public void printWhoWon() {
+    public void printWhoWon(UIbase console) {
         if (this.blueGroupScore > this.redGroupScore) {
-            System.out.println("~*~*~*~*~*~*~*~*~*~");
-            System.out.println("The blue group won!");
-            System.out.println("~*~*~*~*~*~*~*~*~*~");
+            console.print("~*~*~*~*~*~*~*~*~*~");
+            console.print("The blue group won!");
+            console.print("~*~*~*~*~*~*~*~*~*~");
         }
         else if (this.redGroupScore > this.blueGroupScore) {
-            System.out.println("~*~*~*~*~*~*~*~*~*~");
-            System.out.println("The red group won!");
-            System.out.println("~*~*~*~*~*~*~*~*~*~");
+            console.print("~*~*~*~*~*~*~*~*~*~");
+            console.print("The red group won!");
+            console.print("~*~*~*~*~*~*~*~*~*~");
         }
         else {
-            System.out.println("~*~*~*~*~*~*~*~*~*~");
-            System.out.println("It's a draw!");
-            System.out.println("~*~*~*~*~*~*~*~*~*~");
+            console.print("~*~*~*~*~*~*~*~*~*~");
+            console.print("It's a draw!");
+            console.print("~*~*~*~*~*~*~*~*~*~");
         }
     }
 
-    public void printSuddenDeath(String groupColor) {
-        System.out.println("~*~*~*~*~*~*~*~*~*~");
-        System.out.println("The " + groupColor + " group lost.");
-        System.out.println("~*~*~*~*~*~*~*~*~*~");
+    public void printSuddenDeath(String groupColor, UIbase console) {
+        console.print("~*~*~*~*~*~*~*~*~*~");
+        console.print("The " + groupColor + " group lost.");
+        console.print("~*~*~*~*~*~*~*~*~*~");
     }
 }

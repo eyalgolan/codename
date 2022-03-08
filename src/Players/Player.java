@@ -1,5 +1,7 @@
 package Players;
 
+import UI.UIbase;
+
 public abstract class Player {
     protected ChatMediator mediator;
     protected String name;
@@ -33,6 +35,6 @@ public abstract class Player {
         return state;
     }
 
-    public abstract void send(String msg);
-    public abstract void receive(String msg);
+    public abstract void send(String msg, UIbase console);
+    public abstract void receive(String msg, UIbase console);
 }

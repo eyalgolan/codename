@@ -1,5 +1,8 @@
 import Maps.*;
 import Players.*;
+import UI.Console;
+import UI.GraphicUI;
+import UI.UIbase;
 
 import java.util.Arrays;
 import java.util.List;
@@ -11,6 +14,8 @@ public class GameRunner {
     private ChatMediator mediator;
     private List<Player> playerList;
     private Group[] playerGroups = new Group[2];
+    private UIbase console = new Console();
+    private UIbase graphicUI = new GraphicUI(); //not in use for now
 
     //states
     private State playingState;
@@ -30,7 +35,7 @@ public class GameRunner {
         this.turn = new Turn();
 
         setupPlayers();
-        this.playerList.get(0).send("Hey everyone, lets start?");
+        this.playerList.get(0).send("Hey everyone, lets start?", console);
     }
 
     public void setupPlayers() {
@@ -41,26 +46,26 @@ public class GameRunner {
         Player player4 = new PlayerImpl(mediator, "Roi", new RegularPlayerRole(), "BLUE");
         this.playerList = Arrays.asList(player1, player2, player3, player4);
         for(Player p : playerList) {
-            lockedState.doAction(p, gameBoard,turn);
+            lockedState.doAction(p, gameBoard,turn,  console);
             mediator.addPlayer(p);
         }
         this.playerGroups[0] = new Group("RED", List.of(player1), List.of(player3));
         this.playerGroups[1] = new Group("BLUE", List.of(player2), List.of(player4));
     }
     public void printWhoIsPlaying(Player player) {
-        System.out.println("~*~*~*~*~*~*~*~*~*~");
-        System.out.println("Player: " + player.getName() +
+        console.print("~*~*~*~*~*~*~*~*~*~");
+        console.print("Player: " + player.getName() +
                 "\nTeam: " + currentTeamPlay +
                 "\nRole: " + currentRolePlay);
-        System.out.println("~*~*~*~*~*~*~*~*~*~");
+        console.print("~*~*~*~*~*~*~*~*~*~");
     }
 
     public void runGroupSpyMasters(Group group) {
         for(Player spymaster : group.getSpyMasters()) {
             currentTeamPlay = spymaster.getGroupColor();
             currentRolePlay = spymaster.getRole();
-            playingState.doAction(spymaster, gameBoard, turn);
-            lockedState.doAction(spymaster, gameBoard, turn);
+            playingState.doAction(spymaster, gameBoard, turn, console);
+            lockedState.doAction(spymaster, gameBoard, turn, console);
         }
     }
 
@@ -68,8 +73,8 @@ public class GameRunner {
         for(Player regularPlayer : group.getRegularPlayers()) {
             currentTeamPlay = regularPlayer.getGroupColor();
             currentRolePlay = regularPlayer.getRole();
-            canGameContinue = playingState.doAction(regularPlayer, gameBoard, turn);
-            lockedState.doAction(regularPlayer, gameBoard, turn);
+            canGameContinue = playingState.doAction(regularPlayer, gameBoard, turn, console);
+            lockedState.doAction(regularPlayer, gameBoard, turn, console);
             if (!canGameContinue) {break; }
         }
         return canGameContinue;
@@ -81,10 +86,10 @@ public class GameRunner {
                 runGroupSpyMasters(group);
                 if (!runGroupRegularPlayers(group)) { return; }
             }
-            this.turn.printTurnStatistics();
+            this.turn.printTurnStatistics( console);
             this.turn.incrementTurnNumber();
         }
-        this.turn.printWhoWon();
+        this.turn.printWhoWon( console);
     }
 
     public static void main(String[] args) {
